@@ -62,7 +62,7 @@
     </select>
   </div>
   <div class="col-md-2">
-    <a href="./addCategory.php" style="margin-top: 33px;display: inline-block;">Add category</a>
+    <a href="../admin_category/add_category.php" style="margin-top: 33px;display: inline-block;">Add category</a>
   </div>
   <div class="mb-3 col-md-6">
   <label for="formFile" class="form-label">Product Picture</label>
