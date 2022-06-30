@@ -1,0 +1,76 @@
+form{
+    border: 1px solid lightgray;
+}
+
+
+.value-button {
+display: inline-block;
+border: 1px solid #ddd;
+margin-top: -6px;
+width: 40px;
+height: 46px;
+text-align: center;
+vertical-align: middle;
+padding: 9px 0;
+background: #eee;
+user-select: none;
+}
+
+.value-button:hover {
+cursor: pointer;
+}
+
+form #decrease {
+margin-right: -4px;
+border-radius: 8px 0 0 8px;
+}
+
+form #increase {
+margin-left: -4px;
+border-radius: 0 8px 8px 0;
+}
+
+form #input-wrap {
+margin: 0px;
+padding: 0px;
+}
+
+input#number {
+text-align: center;
+border: none;
+border-top: 1px solid #ddd;
+border-bottom: 1px solid #ddd;
+margin: 0px;
+width: 40px;
+height: 40px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+margin: 0;
+}
+.counter{
+margin: 0px 60px;
+display: inline-block;
+}
+.product{
+display: inline-block;
+}
+.latest{
+text-align: center;
+}
+
+.card{
+border: none;
+}
+.card-text{
+text-align: center;
+}
+.category{
+text-align: center;
+font-weight: bold;
+}
+.card-img-top{
+height: 100%;
+width: 100%;
+}
