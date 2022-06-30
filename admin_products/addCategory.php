@@ -43,34 +43,10 @@
 <form class="row g-3" style="width: 80%;margin: 20px 355px;">
 
   <div class="col-md-6">
-    <label for="inputProduct" class="form-label">Product</label>
+    <label for="inputProduct" class="form-label">Category Name</label>
     <input type="text" class="form-control" id="inputProduct" placeholder="Enter Product Name">
   </div>
-  <br>
-  <div class="col-md-6">
-    <label for="inputPrice" class="form-label">Price</label>
-    <input type="number" class="form-control" id="inputPrice">
-  </div><br>
-
-  <div class="col-md-6">
-    <label for="inputCategory" class="form-label">Category</label>
-    <select id="inputCategory" class="form-select">
-      <option selected>Choose...</option>
-      <option>Hot Drinks</option>
-      <option>soft Drinks</option>
-      <option>Cold Drinks</option>
-    </select>
-  </div>
-  <div class="col-md-2">
-    <a href="./addCategory.php" style="margin-top: 33px;display: inline-block;">Add category</a>
-  </div>
-  <div class="mb-3 col-md-6">
-  <label for="formFile" class="form-label">Product Picture</label>
-  <input class="form-control" type="file" id="formFile">
-</div>
-<div class="col-md-6">
-</div>
-
+  <div class="col-md-6"></div>
   <div class="col-3">
     <button type="submit" class="btn btn-primary" style="width: 100px;">Save</button>
   </div>
