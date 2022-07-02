@@ -56,7 +56,7 @@ if(isset($_POST['AddProduct'])){
                     session_start();
                     session_destroy();  
                     if(in_array($extension,$allowedExt)&&$fileSize<=2097152){
-                    move_uploaded_file($_FILES["image"]["tmp_name"], "../img/". $newimagename);
+                    move_uploaded_file($_FILES["image"]["tmp_name"], "../uploads/". $newimagename);
                     }
                     $db=new DB();
                     $connections= $db->get_connect();
