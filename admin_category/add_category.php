@@ -11,52 +11,32 @@
     <title>Cafeteria</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Cafeteria</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Users</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Manual Order</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Checks</a>
-        </li>
-      </ul>
-     <img src="team-3-800x800.jpg" height="80px" width="80px" style="margin-right:20px ;"> <span>Admin</span>
-    </div>
-  </div>
-</nav>
+  <!-- navbar -->
+  <?php include("../inc/nav_user.php")?>
 <section>
-<form class="row g-3" style="width: 80%;margin: 20px 355px;">
-
+  <!-- end navbar -->
+  <!-- add category form -->
+<form class="row g-3" style="width: 80%;margin: 20px 355px;" method="post" action="./handle_addCategory.php">
   <div class="col-md-6">
     <label for="inputProduct" class="form-label">Category Name</label>
-    <input type="text" class="form-control" id="inputProduct" placeholder="Enter Product Name">
+    <input type="text" class="form-control" name="categoryName" id="inputProduct" placeholder="Enter Category Name">
   </div>
+
   <div class="col-md-6"></div>
+
   <div class="col-3">
-    <button type="submit" class="btn btn-primary" style="width: 100px;">Save</button>
+    <button type="submit" class="btn btn-primary" style="width: 100px;"  name="addCategory">Save</button>
   </div>
+
   <div class="col-3">
     <button type="reset" class="btn btn-primary" style="width: 100px;">Reset</button>
   </div>
+
 </form>
 </section>
+<!-- end add category form -->
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
 

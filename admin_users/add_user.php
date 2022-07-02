@@ -1,4 +1,4 @@
-//the form action="handle_addUser.php"
+<!-- //the form action="handle_addUser.php" -->
 <?php 
 
     // var_dump($_POST);
