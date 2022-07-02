@@ -9,7 +9,20 @@
     <script src="js/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Cafeteria</title>
+    <style>
+   .error{
+                color: red;
+            }
+  </style>
 </head>
+<?php
+    session_start();
+    if(isset(  $_SESSION['errors'])){
+      // var_dump($_SESSION['errors']); 
+      $errors=$_SESSION['errors'];
+
+    }
+    ?>
 <body>
   <!-- navbar -->
   <?php include("../inc/nav_user.php")?>
@@ -20,6 +33,8 @@
   <div class="col-md-6">
     <label for="inputProduct" class="form-label">Category Name</label>
     <input type="text" class="form-control" name="categoryName" id="inputProduct" placeholder="Enter Category Name">
+    <span class="error"><?php echo (isset($errors['categoryName'])? $errors['categoryName']:"" ); ?></span>
+
   </div>
 
   <div class="col-md-6"></div>
