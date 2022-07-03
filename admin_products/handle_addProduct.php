@@ -67,7 +67,88 @@ if(isset($_POST['AddProduct'])){
                     }
             }
         }
-     
+
+
+     /*  -----------------------------------------------------------------------------------------------------------
+     -----------------------------------------------------------------------------------------------------------
+      handle-edit */ 
+
+    if (isset($_POST['submitEdit']) && isset($_FILES['my_image']) ) {
+   
+        $img_name = $_FILES['my_image']['name'];
+        $img_size = $_FILES['my_image']['size'];
+        $tmp_name = $_FILES['my_image']['tmp_name'];
+        $error_img = $_FILES['my_image']['error'];
+        
+    
+        if($error_img === 0){
+         
+            $img_exten=pathinfo($img_name ,PATHINFO_EXTENSION);
+            $img_ex_lowc = strtolower($img_exten);
+    
+            $allowed_exs = array("jpg", "jpeg", "png"); 
+            if (in_array($img_ex_lowc, $allowed_exs)) {
+                $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lowc;
+                    $img_upload_path = '../uploads/'.$new_img_name;
+                    move_uploaded_file($tmp_name, $img_upload_path);
+         
+            }
+    
+    
+        }
+    
+        $id= Validation($_POST["id"]);
+        $name = Validation($_POST["name"]);
+        $price = Validation($_POST["price"]);
+    
+    
+       $db=new DB();
+
+        if (!empty($name) && !empty($price)  ) {
+            if(!is_numeric($name) && is_numeric($price)){
+                 if(strlen($name)>5){
+                    $db->updatedata("products","name='$name',price=$price,image='$new_img_name'","id={$id}");
+                
+                    header("location:all_products.php?success='updated successfuly'");
+                 }else{
+                    header("location:edit_product.php?id=$id&error='name must be >5 '");
+
+                 } 
+               
+            }else{
+                header("location:edit_product.php?id=$id&error='name must be string and price must be number '");
+            }
+    
+        }else{
+            header("location:edit_product.php?id=$id&error='feild is required'");
+        }
+    
+    } else {
+        header("location:index.php");
+      
+    }
+
+      
+    /*  -----------------------------------------------------------------------------------------------------------
+     -----------------------------------------------------------------------------------------------------------
+      handle-delete */
+      $db=new DB();
+      if(isset($_GET['id'])){
+          $id= $_GET['id'];
+          
+        $run_query= $db->deletedata('products', "id=".$id);
+      
+          
+         
+         if ($run_query) {
+          
+          header("location:all_products.php?success=successfully deleted");
+         } else {
+          header("location:all_products.php?error=unknown error occurred");
+       }
+      
+              }
+    //function validation 
         function validation($data){
             $data=trim($data);
             $data=stripslashes($data);
