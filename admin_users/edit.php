@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,24 +14,36 @@
     <style>
         span{
     display: none;
-    color: red
+    color: rgb(18, 221, 221);
 }
 .greenColor{
     border:3px solid rgb(35, 212, 35);
 }
     </style>
-</head>
+   
 <body>
-<?php    
-         
-        // if (isset($_SESSION['errors'])){
-        //     echo "<pre>";
-        //         print_r ($_SESSION['errors']) ; 
-        //     echo "</pre>"  ; 
-            
-        // }
-       
-    ?>
+<?php 
+if(isset($_GET['id'])){
+
+        try{
+            require_once("../inc/database.php");
+            $db = new DB();
+            //  $connection=$db->get_connect();
+            $data = $db->get_data("*","user","id={$_GET['id']}");
+        //     $connection = new pdo("mysql:host=localhost;dbname=studentinfo" , "root" , "");
+        
+        //    $data = $connection->query("select * from student where id={$_GET['id']}");
+            $result=$data->fetch(PDO::FETCH_ASSOC);
+                //  var_dump($result);
+                
+                // header('location:update.php')
+                
+        
+        } catch(PDOException $e){
+            var_dump( $e->getMessage());
+        }
+}
+?>
 
 
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
@@ -60,7 +70,7 @@
                 <a class="nav-link" href="#">Checks</a>
               </li>
             </ul>
-           <img src="../img/team-3-800x800.jpg" height="80px" width="80px" style="margin-right:20px ;"> <b>Admin</b>
+           <img src="../img/team-3-800x800.jpg" height="80px" width="80px" style="margin-right:20px ;"> <p>Admin:<?=" " . $_COOKIE['name']?></p>
           </div>
         </div>
       </nav>
@@ -77,14 +87,16 @@
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card" style="border-radius: 15px;">
             <div class="card-body p-5">
-              <h4 class="text-uppercase text-center mb-5">Register </h4>
+              <h4 class="text-uppercase text-center mb-5">UPDATE </h4>
 
-              <form action="handle_addUser.php" method="post"  enctype='multipart/form-data' class="needs-validation"  >
+              <form action="handle_addUser.php" method="post"  enctype='multipart/form-data'  class="needs-validation"  >
 
                 <div class="form-outline mb-4">
-                  <label class="form-label" for="form3Example1cg">Your Name</label>
-                  <input type="text" name="name" id="form3Example1cg" class="form-control form-control-lg" />
-                 
+                  <label class="form-label" for="validationCustom03">Your Name</label>
+                  <input type="text" name="name" id="form3Example1cg" id="validationCustom03" class="form-control" value = "<?=  $result['name'];?>"  required />
+                  <div class="invalid-feedback">
+                             Please provide a valid name
+                    </div>
                   <span name="name" id="name_span">user name [4-18] characters which contains letters and numeric digits </span> 
                   <?= (isset($_SESSION['errors']['valid_name']))? $_SESSION['errors']['valid_name']:''?> 
 
@@ -93,7 +105,7 @@
 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example3cg">Your Email</label>
-                  <input type="email" name="email" id="form3Example3cg" class="form-control form-control-lg" />
+                  <input type="email" name="email" id="form3Example3cg" class="form-control form-control-lg" value = "<?=  $result['e_mail'];?>"  required/>
                   
                   <span name="email" id="email_span">Email is invalid</span> </td>
                   <?= (isset($_SESSION['errors']['valid_email']))? $_SESSION['errors']['valid_email']:''?> 
@@ -102,7 +114,7 @@
 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example4cg">Password</label>
-                  <input type="password" name="password" id="form3Example4cg" class="form-control form-control-lg" />
+                  <input type="password" name="password" id="form3Example4cg" class="form-control form-control-lg"  value = "<?=  $result['pass_word'];?>"  required/>
                   
                   <span name="pass_span" id="pass_span">[6 to 16 ] characters which contain at least one special character, numeric digits,
                     letters</span>
@@ -112,7 +124,7 @@
 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example4cdg">Repeat your password</label>
-                  <input type="password" name="Pass_confirm" id="form3Example4cdg" class="form-control form-control-lg" />
+                  <input type="password" name="Pass_confirm" id="form3Example4cdg" class="form-control form-control-lg"  value = "<?=  $result['pass_word'];?>"  required/>
                   
                   <span name="pass_conf_span" id="pass_conf_span">your Password is invalid</span>
                   
@@ -122,7 +134,7 @@
 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example5cg">Room No</label>
-                    <input type="number"  name="room" id="form3Example5cg" class="form-control form-control-lg" />
+                    <input type="number"  name="room" id="form3Example5cg" class="form-control form-control-lg" value = "<?=  $result['room'];?>"  required />
                    
                     <span name="room_span" id="room_span">Enter Valid Number </span> 
                     <?= (isset($_SESSION['errors']['valid_room']))? $_SESSION['errors']['valid_room']:''?> 
@@ -133,7 +145,7 @@
 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example6cg">EXt</label>
-                    <input type="number" name="ext" id="form3Example6cg" class="form-control form-control-lg" />
+                    <input type="number" name="ext" id="form3Example6cg" class="form-control form-control-lg" value = "<?=  $result['EXT'];?>"  required/>
                    
                     <span name="ext_span" id="ext_span">Enter Valid Ext </span> 
                     <?= (isset($_SESSION['errors']['valid_ext']))? $_SESSION['errors']['valid_ext']:''?> 
@@ -143,7 +155,9 @@
 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example7cg">Image</label>
-                    <input type="file" name="image" id="form3Example7cg" class="form-control form-control-lg" />
+                    <input type="file" name="image" id="form3Example7cg" class="form-control form-control-lg" required  /> 
+                    <p> <?="you uploaded this file :  images/". $result['image'] ?> </p>
+                    
                    
                     <span name="img_span" id="img_span">Enter Valid image </span> 
                     <?= (isset($_SESSION['imgerrors']['image_extention']))? $_SESSION['imgerrors']['image_extention']:''?> 
@@ -160,13 +174,15 @@
                 </div> -->
 
                 <div class="d-flex justify-content-evenly">
-                  <button type="submit" name="register"
-                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                  <button type="submit" name="Update"
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">UPDATE</button>
                     <button type="reset"
                     class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Reset</button>
                 </div>
+                <input type="hidden" value="<?= $_GET['id']; ?>"  name="idoriginal" >
 
-                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!"
+
+                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="../index.php"
                     class="fw-bold text-body"><u>Login here</u></a></p>
 
               </form>
@@ -178,8 +194,10 @@
     </div>
   </div>
 </section>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-<script src="../js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+ <<script src="../js/script.js"></script>
+</head>
+
 </body>
 </html>
