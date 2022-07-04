@@ -22,7 +22,7 @@
                         <a class="nav-link" href="../admin_checks/all_checks.php">Checks</a>
                     </li>
                 </ul>
-                <img src="<?php echo $_SESSION['admin_img']; ?>" height="80px" width="80px" style="margin-right:20px ;"> <span>Admin</span>
+                <img src="" height="80px" width="80px" style="margin-right:20px ;"> <span>Admin</span>
             </div>
         </div>
     </nav>

@@ -1,7 +1,10 @@
 <?php
 require_once("../inc/database.php");
 $db = new DB();
-$result = $db->get_data('*', 'products');
+$sql = $db->get_connect()->query("SELECT  products.id, products.name ,products.price ,products.image,categories.category 
+FROM categories INNER JOIN products ON products.category_id=categories.id");
+$result=$sql->fetchAll();
+//var_dump($result);
 ?>
 
 
@@ -85,16 +88,19 @@ $result = $db->get_data('*', 'products');
         <th scope="col">name</th>
         <th scope="col">price</th>
         <th scope="col">image</th>
+        <th scope="col">category</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
+      
       <?php foreach ($result as $key => $product) { ?>
         <tr>
           <td scope="row"><?php echo $product['name'] ?></td>
           <td><?php echo $product['price'] ?></td>
           <td> <img width="100" height="90" src="../uploads/<?php echo $product['image'] ?>"></td>
-          <td><button value="<?php echo $product['id'] ?>" class="btn">avaliable</button> <a href="edit_product.php?id=<?php echo $product['id']; ?>">edit</a> <a href="handle_addProduct.php?id=<?php echo $product['id']; ?>">delete</a></td>
+          <td><?php echo $product['category'] ?></td>
+          <td><button value="<?php echo $product['id'] ?>" class="btn">avaliable</button> <a href="edit_product.php?id=<?php echo $product['id']; ?>">edit</a> <a href="handle_deleteProduct.php?id=<?php echo $product['id']; ?>">delete</a></td>
         </tr>
       <?php } ?>
 
