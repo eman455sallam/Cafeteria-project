@@ -13,11 +13,9 @@
     <title>Cafeteria</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Cafeteria</a>
-  </div>
-</nav>
+<?php
+  require  '../inc/nav_user.php';
+?>
 <div class="container parent_container">
     <div class="date_inputs_container">
         <h1 class="mb-4 h1"> My Orders</h1>
@@ -34,21 +32,66 @@
     </tr>
   </thead>
   <tbody id="printData">
-    
+  <!-- fetch all data from data ase  -->
+  <?php
+  
+  require "../inc/database.php";
+  try{
+    $db_object = new DB ();
+  $allrows = $db_object->get_data("*","orders","1");  
+  $result = $allrows->fetchAll(PDO::FETCH_ASSOC);
+  // echo "<pre>";
+  // var_dump($result);
+  // echo "</pre>";
+  foreach($result as $key=>$value){
+    // var_dump($key);
+    // var_dump($value);
+    echo $value['id'];
+    echo "<tr>
+  <td>{$value['date']}</td>
+  <td>".($value['status'] == '0'?'canceled':($value['status'] == '1'?'processing':($value['status'] == '2'?'out of delivery':($value['status'] == '3'?'done':''))) )."</td>
+  <td>{$value['total_amount']}</td>
+  <td>".($value['status'] == '1'?'<a> cancel</a>':'' )."</td>
+  </tr>";
+  
+  }
+  
+  }catch(PDOException $e){
+    var_dump($e->getMessage());
+  }
+  
+  
+  ?>  
+
+
+
+
+
+
+
+
+
+
+
   </tbody>
 </table>
 <div>
+<div class="n">
+  
 <div class="card" id="product_card" style="width: 18rem;">
-  <img class="card-img-top" src=".." alt="Card image cap">
-  <div class="card-body">
+
+  <!-- <img class="card-img-top" src=".." alt="Card image cap"> -->
+  <!-- <div class="card-body">
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
+  </div> -->
+</div>
 </div>
 </div>
 </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="../js/main.js"></script>
+    <script src="../js/main.js" ></script>
+    <script src="../js/second.js"></script>
 </body>
 
 

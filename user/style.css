@@ -4,3 +4,6 @@
 .date_inputs_container{
     margin: 20px 0 !important;
 }
+.n {
+    display: flex !important;
+}
