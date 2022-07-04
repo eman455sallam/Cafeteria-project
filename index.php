@@ -17,9 +17,9 @@
 
             if(filter_var($email,FILTER_VALIDATE_EMAIL) == false){
               $ass_arr['valid_email']= "<p>Please Enter a valid email</p>"; 
-            }if(strlen($pass) < '7'){
-              $ass_arr['length_pass']= "<p>Please password should be more than 7 characters</p>"; 
-            }
+            // }if(strlen($pass) < '7'){
+            //   $ass_arr['length_pass']= "<p>Please password should be more than 7 characters</p>"; 
+            // }
             if(count($ass_arr)>0 ){
               
               session_start();
@@ -165,7 +165,6 @@
                     
                     <!-- <span name="pass_span" id="pass_span">[6 to 16 ] characters which contain at least one special character, numeric digits,
                         letters</span> -->
-                        <span><?= (isset($_SESSION['errors']['length_pass']))? $_SESSION['errors']['length_pass']:''?></span> 
 
                     </div>
                     <div class="d-flex justify-content-evenly">

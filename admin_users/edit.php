@@ -163,7 +163,8 @@ if(isset($_POST['Update'])){
                       $data = $db->updatedata("user","name='$name', e_mail='$email', pass_word='$pass', room=$room, EXT=$ext , image='$photoname'","id={$_POST['idoriginal']}");
                            //redirect to all users page 
                          header("location:all_users.php");
-                      // var_dump($data);
+                      //  var_dump($data);
+                      //  var_dump($_POST);
       
  
                 
