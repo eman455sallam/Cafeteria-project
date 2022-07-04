@@ -18,6 +18,7 @@ if(isset($_POST['register'])){
           $ext = validation($_POST['ext']);
           $room = validation($_POST['room']);
           $pass = validation($_POST['password']);
+          $pass_confirm=validation($_POST['Pass_confirm']);
           
 
             
@@ -32,8 +33,9 @@ if(isset($_POST['register'])){
                   // password validation starts
                 
                     if(strlen($pass) < '7'){
-                        $ass_arr['length_pass']= "<p>Please password shod be more than 7 characters</p>"; 
-                    }
+                        $ass_arr['length_pass']= "<p>Please password should be more than 7 characters</p>"; 
+                    }if($pass_confirm!=$pass){
+                        $ass_arr['not_matched']= "<p>password does not match</p>"; }
                     
                 
                   // password validation has been ended
@@ -58,8 +60,9 @@ if(isset($_POST['register'])){
                // password validation has been ended
 
                  
-                var_dump($_FILES); echo "<br>";
-                var_dump($_POST);
+                // var_dump($_FILES); echo "<br>";
+                // var_dump($_POST);
+                // var_dump($ass_arr);
                
                 //image validation
                 if($_FILES['image']['name']){
@@ -82,6 +85,7 @@ if(isset($_POST['register'])){
 
 
                     }
+                    // var_dump($image_errors);
 
                 }
 
@@ -91,20 +95,21 @@ if(isset($_POST['register'])){
                   $_SESSION['errors']=$ass_arr;
                   $_SESSION['imgerrors']=$image_errors;
                  
-                  var_dump ($_SESSION['errors']);
-                  var_dump($_SESSION['imgerrors']);
+                 var_dump ($_SESSION['errors']['not_matched']);
+                //    var_dump($_SESSION['imgerrors']);
                 
                  
                    
-                  //  header("loction:register.php");
+                 header("location:add_user.php");
                  
                   }else{
-                    // echo"hhhh";
+                    echo"hhhh";
 
                     require '../inc/database.php';
                     try{
-                      session_start();
-                      session_destroy();
+                      
+                    session_start();
+                    session_destroy();   
                    
                     $db = new DB();
                     var_dump ($db);
@@ -114,7 +119,7 @@ if(isset($_POST['register'])){
 
         
                     
-                      header('location:all_users.php');
+                       header('location:all_users.php');
                    }catch(PDOException $e){
                     var_dump( $e->getMessage());
               }
@@ -127,7 +132,8 @@ if(isset($_POST['register'])){
   }
 
   ///////////////////////////////////////////UPDATE CONFIG////////////////////////////////////
-
+  echo "hhhhhhh";
+  var_dump( $_POST);
 if(isset($_POST['Update'])){
     
     var_dump($_FILES); echo "<br>";
@@ -225,7 +231,8 @@ if(isset($_POST['Update'])){
              
               var_dump ($_SESSION['errors']);
               var_dump($_SESSION['imgerrors']);
-                header('location:handle_addUser.php');
+              echo"hhhhhhh";
+                header('location:edit.php');
             
              
                
@@ -234,7 +241,8 @@ if(isset($_POST['Update'])){
             }else{
                 require '../inc/database.php';
                 try{
-                        
+                      session_start();
+                      session_destroy();  
                         
                     
                         $db = new DB();
@@ -242,7 +250,7 @@ if(isset($_POST['Update'])){
                         
                         $data = $db->updatedata("user","name='$name', e_mail='$email', pass_word='$pass', room=$room, EXT=$ext , image='$photoname'","id={$_POST['idoriginal']}");
 
-                         header("location:all_users.php");
+                          header("location:all_users.php");
                         var_dump($data);
         
    

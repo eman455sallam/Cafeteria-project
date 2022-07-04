@@ -17,6 +17,8 @@
         span{
     display: none;
     color: red
+}p{
+  color:red;
 }
 .greenColor{
     border:3px solid rgb(35, 212, 35);
@@ -24,14 +26,9 @@
     </style>
 </head>
 <body>
-<?php    
-         
-        // if (isset($_SESSION['errors'])){
-        //     echo "<pre>";
-        //         print_r ($_SESSION['errors']) ; 
-        //     echo "</pre>"  ; 
-            
-        // }
+<?php 
+ session_start();
+ 
        
     ?>
 
@@ -115,7 +112,8 @@
                   <input type="password" name="Pass_confirm" id="form3Example4cdg" class="form-control form-control-lg" />
                   
                   <span name="pass_conf_span" id="pass_conf_span">your Password is invalid</span>
-                  
+                  <?= (isset($_SESSION['errors']['not_matched']))? $_SESSION['errors']['not_matched']:''?> 
+
                 </div>
 
 

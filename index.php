@@ -171,7 +171,7 @@
                 </div>
                     <br>
                 <div class="d-flex justify-content-evenly">
-                  <a href="forgpass.php" > Forget Password </a>
+                  <a href="forg_password.php" > Forget Password </a>
                 </div>
 
                 

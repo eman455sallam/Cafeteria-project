@@ -24,6 +24,7 @@
 <body>
 <?php 
 if(isset($_GET['id'])){
+  session_start();
 
         try{
             require_once("../inc/database.php");
@@ -89,11 +90,11 @@ if(isset($_GET['id'])){
             <div class="card-body p-5">
               <h4 class="text-uppercase text-center mb-5">UPDATE </h4>
 
-              <form action="handle_addUser.php" method="post"  enctype='multipart/form-data'  class="needs-validation"  >
+              <form action="handle_addUser.php" method="post"  enctype='multipart/form-data'    >
 
                 <div class="form-outline mb-4">
                   <label class="form-label" for="validationCustom03">Your Name</label>
-                  <input type="text" name="name" id="form3Example1cg" id="validationCustom03" class="form-control" value = "<?=  $result['name'];?>"  required />
+                  <input type="text" name="name" id="form3Example1cg" class="form-control" value = "<?=  $result['name'];?>"  required />
                   <div class="invalid-feedback">
                              Please provide a valid name
                     </div>
@@ -156,7 +157,7 @@ if(isset($_GET['id'])){
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example7cg">Image</label>
                     <input type="file" name="image" id="form3Example7cg" class="form-control form-control-lg" required  /> 
-                    <p> <?="you uploaded this file :  images/". $result['image'] ?> </p>
+                    <p> <?="you uploaded this file :  ". $result['image'] ?> </p>
                     
                    
                     <span name="img_span" id="img_span">Enter Valid image </span> 
@@ -166,12 +167,7 @@ if(isset($_GET['id'])){
                    
                   </div>
 
-                <!-- <div class="form-check d-flex justify-content-center mb-5">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
-                  <label class="form-check-label" for="form2Example3g">
-                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
-                  </label>
-                </div> -->
+               
 
                 <div class="d-flex justify-content-evenly">
                   <button type="submit" name="Update"
@@ -196,7 +192,7 @@ if(isset($_GET['id'])){
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
- <<script src="../js/script.js"></script>
+ <script src="../js/script.js"></script>
 </head>
 
 </body>

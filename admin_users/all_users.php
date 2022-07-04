@@ -15,6 +15,11 @@
        img{
         width:50px;
         height:50px;
+       } 
+       .title{
+        margin-top:30px;
+        text-align:center;
+        
        }
     </style>
 </head>
@@ -65,7 +70,7 @@
 
 
 
-
+        <div class="title"><h2>ALL Users</h2></div>
 
 
 
