@@ -37,13 +37,18 @@
                       $db = new DB();
                       // var_dump ($db);
                       // $query_statment= "INSERT INTO user (name,e_mail,pass_word,room,EXT,image) VALUES(?,?,?,?,?,?)";
-                      $data = $db->get_data("*","user","e_mail='$email'");
-                      var_dump( $data);
+                      $data = $db->get_data("*","user","e_mail='$email' and pass_word='$pass'");
+                      $datawithoutpass=$db->get_data("*","user","e_mail='$email'");
+                      // var_dump( $data);
                       $userinfo =$data->fetch(PDO::FETCH_ASSOC);
-                      //check it is exist in data base 
-                      
-                      if(!$userinfo){echo "<div class='notregistered'><h5><span> sorry :( you are not registered in this site </span></h5></div>";}else{
+                      $datawithoutpass2 =$datawithoutpass->fetch(PDO::FETCH_ASSOC);
 
+                      //check it is exist in data base 
+                      //  var_dump( $userinfo);
+                      //  var_dump($datawithoutpass2);
+                      
+                      if(($email==$datawithoutpass2['e_mail'])&&($pass!=$datawithoutpass2['pass_word'])){echo "<div class='notregistered'><h5><span> sorry :( Password incorrect <span></h5></div>";}
+                        elseif(!$userinfo){echo "<div class='notregistered'><h5><span> sorry :( you are not registered in this site </span></h5></div>";}else{
 
                       // var_dump ($userinfo['name']);
                       setcookie("id",$userinfo['id']);

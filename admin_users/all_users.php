@@ -27,12 +27,12 @@
 
 <?php    
          
-         if(isset($_COOKIE['name'])){
+         if((isset($_COOKIE['name']))&&($_COOKIE['role']==1)){
            
 
         }else{
             
-            header("location:login.php");
+            header("location:../index.php");
             
         }
         

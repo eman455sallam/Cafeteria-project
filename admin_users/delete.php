@@ -8,10 +8,7 @@ require_once("../inc/database.php");
             $db = new DB();
        
                $userdelete = $db->deletedata("user","id={$_GET['id']}");
-            //    $connection = new pdo("mysql:host=localhost;dbname=cafeteria" , "root" , "");
-              // echo "delet from student where id={$_GET['id']}";
-            //  $data = $connection->query("delete from user where id={$_GET['id']}");
-      //     var_dump( $studentdelete);
+            
               
              
              

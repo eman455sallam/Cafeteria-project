@@ -22,7 +22,7 @@
           <a class="nav-link" href="#">Checks</a>
         </li>
       </ul>
-     <img src="../img/team-3-800x800.jpg" height="80px" width="80px" style="margin-right:20px ;"> <span>Admin</span>
+     <img src="../img/team-3-800x800.jpg" height="80px" width="80px" style="margin-right:20px ;"> <b>Admin:<?=" " . $_COOKIE['name']?></b>
     </div>
   </div>
 </nav>

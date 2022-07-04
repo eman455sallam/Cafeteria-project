@@ -122,7 +122,7 @@
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card" style="border-radius: 15px;">
             <div class="card-body p-5">
-              <h4 class="text-uppercase text-center mb-5">forget password </h4>
+              <h4 class="text-uppercase text-center mb-5"> password Update </h4>
 
               <form action="" method="post">
 
@@ -154,7 +154,7 @@
                         </div>
                         <div class="d-flex justify-content-evenly">
                   <button type="submit" name="forgpass"
-                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">LOGIN</button>
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Update Password</button>
                     <button type="reset"
                     class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Reset</button>
                 </div>

@@ -9,77 +9,183 @@
     <!-- <link href="CSS/bootstrap.css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="../css/stylealiaa.css" rel="stylesheet" />
-    
-    <title>Document</title>
+    <title>EDIT AND UPDATE</title>
     <style>
-        span{
+    span{
     display: none;
-    color: rgb(18, 221, 221);
-}
-.greenColor{
+    color: rgb(18, 221, 221);}
+    p{color:red;}
+   .greenColor{
     border:3px solid rgb(35, 212, 35);
-}
+    }
     </style>
    
-<body>
-<?php 
-if(isset($_GET['id'])){
-  session_start();
+    <body>
+       <?php 
+        require_once("../inc/database.php");
 
-        try{
-            require_once("../inc/database.php");
-            $db = new DB();
-            //  $connection=$db->get_connect();
-            $data = $db->get_data("*","user","id={$_GET['id']}");
-        //     $connection = new pdo("mysql:host=localhost;dbname=studentinfo" , "root" , "");
-        
-        //    $data = $connection->query("select * from student where id={$_GET['id']}");
-            $result=$data->fetch(PDO::FETCH_ASSOC);
-                //  var_dump($result);
+
+          //check edit button
+          if(isset($_GET['id'])){
+            session_start();
+
+                  try{
+                    
+                      $db = new DB();
+                      //  $connection=$db->get_connect();
+                      $data = $db->get_data("*","user","id={$_GET['id']}");
+                  //     $connection = new pdo("mysql:host=localhost;dbname=studentinfo" , "root" , "");
+                  
+                  //    $data = $connection->query("select * from student where id={$_GET['id']}");
+                      $result=$data->fetch(PDO::FETCH_ASSOC);
+                          //  var_dump($result);
+                          
+                          // header('location:update.php')
+                          
+                  
+                  } catch(PDOException $e){
+                      var_dump( $e->getMessage());
+                  }
+          }
+///////////////////////////////////////////////UPDATE////////////////////////////////////////////////////
+if(isset($_POST['Update'])){
+    
+  // var_dump($_FILES); echo "<br>";
+  //make sure all fields are filled
+         
+  if(!empty($_POST['name']) && !empty( $_POST['email'])  && !empty($_POST['password']) && !empty($_FILES ['image']) && !empty($_POST['room']) && !empty($_POST['ext'])){
+    function validation ($data){
+
+      return htmlspecialchars(stripslashes(trim($data)));
+
+     } 
+
+    
+    
+    
+    $ass_arr = [];
+    $image_errors=[];
+    $name = validation($_POST['name']);
+    $email = validation($_POST['email']);
+    $ext = validation($_POST['ext']);
+    $room = validation($_POST['room']);
+    $pass = validation($_POST['password']);
+    $pass_confirm = validation($_POST['Pass_confirm']);
+    
+              //email validation
+      
+                  if(!preg_match('/^[a-z]*$/i',$name)){
+                      $ass_arr['valid_name']= "<p>Please Enter a valid name</p>"; 
+                  }if(filter_var($email,FILTER_VALIDATE_EMAIL) == false){
+                      $ass_arr['valid_email']= "<p>Please Enter a valid email</p>"; 
+                  }
+
+              // email validation has been ended
+
+            // password validation starts
+          
+              if(strlen($pass) < '7'){
+                  $ass_arr['length_pass']= "<p>Please password shod be more than 7 characters</p>"; 
+              }if($pass_confirm!=$pass){
+                  $ass_arr['not_matched']= "<p>password does not match</p>"; }
+              
+          
+            // password validation has been ended
+
+            // room validation starts
+          
+            
+             if (!preg_match('/^[1-9][0-9]*$/',$room)){
+                $ass_arr['valid_room']= "<p>Please  your room number should be just numbers</p>"; 
+            }
+            
+       
+          // password validation has been ended
+           // room validation  starts 
+
+          
+            if (!preg_match('/^[1-9][0-9]*$/',$ext)){
+               $ass_arr['valid_ext']= "<p>Please  your ext number should be just numbers</p>"; 
+           }
+           
+      
+         // password validation has been ended
+
+           
+          
+         
+          // image validation
+          if($_FILES['image']['name']){
+             
+              if($_FILES['image']['size']>(10**6)){
+                  $image_errors['image_size'] = "<p>Please imagge must be less thn 1mega byte</p>";
+              }
+              $extension = pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION);
+              $images_extensions= ['png','jpg','jpeg'];
+              // echo $extension;
+              if(!in_array($extension,$images_extensions)){
+                  $image_errors['image_extention'] = "<p>Please imagge extention must be 'png','jpg','jpeg' </p>";
+              } 
+
+              if(empty($image_errors)){
+                  $photopath= '../uploads/';
+                  $photoname= time().".".$extension;
+                  $fullpath = $photopath.$photoname;
+                   move_uploaded_file($_FILES['image']['tmp_name'],$fullpath);
+
+
+              }
+
+          }
+           //check for errors
+          if(count($ass_arr)>0 || count($image_errors)>0){
+           
+           //make error session 
+            $_SESSION['errors']=$ass_arr;
+            $_SESSION['imgerrors']=$image_errors;
+           
+            
+           
+              
+          
+           
+             
+            
+           
+          }else{
+             //start update
+              try{
+                    
+                   //delete errror message    
+                  session_destroy();
+                     
+                      
+                      $data = $db->updatedata("user","name='$name', e_mail='$email', pass_word='$pass', room=$room, EXT=$ext , image='$photoname'","id={$_POST['idoriginal']}");
+                           //redirect to all users page 
+                         header("location:all_users.php");
+                      // var_dump($data);
+      
+ 
                 
-                // header('location:update.php')
-                
-        
-        } catch(PDOException $e){
-            var_dump( $e->getMessage());
-        }
+
+                  }catch(PDOException $e){
+                      var_dump( $e->getMessage());
+                  } 
+   
+   
+   
+   
+   
+              
 }
+} 
+} 
 ?>
 
+<!-- nav bar   -->
+<?php include("../inc/nav_admin.php")?>
 
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Cafeteria</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Products</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Users</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Manual Order</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Checks</a>
-              </li>
-            </ul>
-           <img src="../img/team-3-800x800.jpg" height="80px" width="80px" style="margin-right:20px ;"> <p>Admin:<?=" " . $_COOKIE['name']?></p>
-          </div>
-        </div>
-      </nav>
-
-
-
-
-
+<!-- EDIT AND UPDATE FORM -->
     <section class="vh-100 bg-image" >
   <!-- style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');"> -->
   <div class="mask d-flex align-items-center h-100" >
@@ -90,15 +196,13 @@ if(isset($_GET['id'])){
             <div class="card-body p-5">
               <h4 class="text-uppercase text-center mb-5">UPDATE </h4>
 
-              <form action="handle_addUser.php" method="post"  enctype='multipart/form-data'    >
+              <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post"  enctype='multipart/form-data'    >
 
                 <div class="form-outline mb-4">
                   <label class="form-label" for="validationCustom03">Your Name</label>
                   <input type="text" name="name" id="form3Example1cg" class="form-control" value = "<?=  $result['name'];?>"  required />
-                  <div class="invalid-feedback">
-                             Please provide a valid name
-                    </div>
                   <span name="name" id="name_span">user name [4-18] characters which contains letters and numeric digits </span> 
+                  <!-- PRINT ERROR MSG -->
                   <?= (isset($_SESSION['errors']['valid_name']))? $_SESSION['errors']['valid_name']:''?> 
 
                 </div>
@@ -128,7 +232,8 @@ if(isset($_GET['id'])){
                   <input type="password" name="Pass_confirm" id="form3Example4cdg" class="form-control form-control-lg"  value = "<?=  $result['pass_word'];?>"  required/>
                   
                   <span name="pass_conf_span" id="pass_conf_span">your Password is invalid</span>
-                  
+                  <?= (isset($_SESSION['errors']['not_matched']))? $_SESSION['errors']['not_matched']:''?> 
+
                 </div>
 
 
@@ -157,7 +262,7 @@ if(isset($_GET['id'])){
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example7cg">Image</label>
                     <input type="file" name="image" id="form3Example7cg" class="form-control form-control-lg" required  /> 
-                    <p> <?="you uploaded this file :  ". $result['image'] ?> </p>
+                    <b> <?="you uploaded this file :  ". $result['image'] ?> </b>
                     
                    
                     <span name="img_span" id="img_span">Enter Valid image </span> 
@@ -178,8 +283,7 @@ if(isset($_GET['id'])){
                 <input type="hidden" value="<?= $_GET['id']; ?>"  name="idoriginal" >
 
 
-                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="../index.php"
-                    class="fw-bold text-body"><u>Login here</u></a></p>
+                
 
               </form>
 
@@ -192,7 +296,7 @@ if(isset($_GET['id'])){
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
- <script src="../js/script.js"></script>
+ <!-- <script src="../js/script.js"></script> -->
 </head>
 
 </body>
