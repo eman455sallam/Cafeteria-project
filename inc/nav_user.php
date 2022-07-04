@@ -14,7 +14,7 @@
         </li>
        
       </ul>
-      <img src="../img/team-3-800x800.jpg" height="80px" width="80px" style="margin-right:20px ;"> <b>USER:<?=" " . $_COOKIE['name']?></b>
+      <img  src=<?="../uploads/".$_COOKIE['image']?> height="80px" width="80px" style="margin-right:20px ;"> <b>USER:<?=" " . $_COOKIE['name']?></b>
     </div>
   </div>
 </nav>
