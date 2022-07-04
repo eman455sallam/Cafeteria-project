@@ -6,7 +6,9 @@ require_once("../inc/database.php");
             if(!empty($_POST['categoryName'])){
                 $category_name=validation($_POST['categoryName']);
                 $category_name=ucwords($category_name);
-
+                if(strlen($category_name)<5){
+                    $errors["categoryName"]="category name must be more than 5 latters";
+                 }
                 if (!preg_match("/^[a-zA-Z ]*$/",$category_name)) {  
                     $errors["categoryName"] = " Only alphabets and white space are allowed";  
                 }   
@@ -16,10 +18,12 @@ require_once("../inc/database.php");
             if(count($errors)>0){
                 session_start();
                 $_SESSION['errors']=$errors;
-                header("location:../admin_category/add_category.php");
+                header("location:./add_category.php");
     
             }else{
                 try{
+                    session_start();
+                    session_destroy();
                     $db=new DB();
                     $connections= $db->get_connect();
             
