@@ -8,7 +8,7 @@ class DB {
 
    function __construct(){
     try{
-          $this->connect=new pdo("mysql:host=$this->host;dbname=$this->dbname" , $this->uname , $this->password);
+    $this->connect=new pdo("mysql:host=$this->host;dbname=$this->dbname" , $this->uname , $this->password);
     }catch(PDOException $e){
       echo $e->getMessage();
       
