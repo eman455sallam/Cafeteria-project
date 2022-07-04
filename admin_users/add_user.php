@@ -17,6 +17,8 @@
         span{
     display: none;
     color: red
+}p{
+  color:red;
 }
 .greenColor{
     border:3px solid rgb(35, 212, 35);
@@ -24,49 +26,11 @@
     </style>
 </head>
 <body>
-<?php    
-         
-        // if (isset($_SESSION['errors'])){
-        //     echo "<pre>";
-        //         print_r ($_SESSION['errors']) ; 
-        //     echo "</pre>"  ; 
-            
-        // }
-       
-    ?>
-
-
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Cafeteria</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Products</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Users</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Manual Order</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Checks</a>
-              </li>
-            </ul>
-           <img src="../img/team-3-800x800.jpg" height="80px" width="80px" style="margin-right:20px ;"> <b>Admin</b>
-          </div>
-        </div>
-      </nav>
-
-
-
+<?php 
+ session_start();
+?>
+<!-- nav bar   -->
+<?php include("../inc/nav_admin.php")?>
 
 
     <section class="vh-100 bg-image" >
@@ -115,7 +79,8 @@
                   <input type="password" name="Pass_confirm" id="form3Example4cdg" class="form-control form-control-lg" />
                   
                   <span name="pass_conf_span" id="pass_conf_span">your Password is invalid</span>
-                  
+                  <?= (isset($_SESSION['errors']['not_matched']))? $_SESSION['errors']['not_matched']:''?> 
+
                 </div>
 
 
@@ -152,12 +117,7 @@
                    
                   </div>
 
-                <!-- <div class="form-check d-flex justify-content-center mb-5">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
-                  <label class="form-check-label" for="form2Example3g">
-                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
-                  </label>
-                </div> -->
+               
 
                 <div class="d-flex justify-content-evenly">
                   <button type="submit" name="register"
@@ -166,8 +126,7 @@
                     class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Reset</button>
                 </div>
 
-                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!"
-                    class="fw-bold text-body"><u>Login here</u></a></p>
+                
 
               </form>
 

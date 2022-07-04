@@ -17,9 +17,9 @@
 
             if(filter_var($email,FILTER_VALIDATE_EMAIL) == false){
               $ass_arr['valid_email']= "<p>Please Enter a valid email</p>"; 
-            }if(strlen($pass) < '7'){
-              $ass_arr['length_pass']= "<p>Please password should be more than 7 characters</p>"; 
-            }
+            // }if(strlen($pass) < '7'){
+            //   $ass_arr['length_pass']= "<p>Please password should be more than 7 characters</p>"; 
+            // }
             if(count($ass_arr)>0 ){
               
               session_start();
@@ -37,13 +37,18 @@
                       $db = new DB();
                       // var_dump ($db);
                       // $query_statment= "INSERT INTO user (name,e_mail,pass_word,room,EXT,image) VALUES(?,?,?,?,?,?)";
-                      $data = $db->get_data("*","user","e_mail='$email'");
-                      var_dump( $data);
+                      $data = $db->get_data("*","user","e_mail='$email' and pass_word='$pass'");
+                      $datawithoutpass=$db->get_data("*","user","e_mail='$email'");
+                      // var_dump( $data);
                       $userinfo =$data->fetch(PDO::FETCH_ASSOC);
-                      //check it is exist in data base 
-                      
-                      if(!$userinfo){echo "<div class='notregistered'><h5><span> sorry :( you are not registered in this site </span></h5></div>";}else{
+                      $datawithoutpass2 =$datawithoutpass->fetch(PDO::FETCH_ASSOC);
 
+                      //check it is exist in data base 
+                      //  var_dump( $userinfo);
+                      //  var_dump($datawithoutpass2);
+                      
+                      if(($email==$datawithoutpass2['e_mail'])&&($pass!=$datawithoutpass2['pass_word'])){echo "<div class='notregistered'><h5><span> sorry :( Password incorrect <span></h5></div>";}
+                        elseif(!$userinfo){echo "<div class='notregistered'><h5><span> sorry :( you are not registered in this site </span></h5></div>";}else{
 
                       // var_dump ($userinfo['name']);
                       setcookie("id",$userinfo['id']);
@@ -160,7 +165,6 @@
                     
                     <!-- <span name="pass_span" id="pass_span">[6 to 16 ] characters which contain at least one special character, numeric digits,
                         letters</span> -->
-                        <span><?= (isset($_SESSION['errors']['length_pass']))? $_SESSION['errors']['length_pass']:''?></span> 
 
                     </div>
                     <div class="d-flex justify-content-evenly">
@@ -171,7 +175,7 @@
                 </div>
                     <br>
                 <div class="d-flex justify-content-evenly">
-                  <a href="forgpass.php" > Forget Password </a>
+                  <a href="forg_password.php" > Forget Password </a>
                 </div>
 
                 
