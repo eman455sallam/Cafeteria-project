@@ -1,39 +1,92 @@
-//login page 
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Bootstrap CSS -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- <link href="CSS/bootstrap.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="css/stylealiaa.css" rel="stylesheet" />
+    
+    <title>Document</title>
+    <style>
+        span{color: red}
+        .notregistered{
+            text-align:center;
+            margin-top:20px;
+        }
+   
+   
+
+.greenColor{
+    border:3px solid rgb(35, 212, 35);
+}
+    </style>
 </head>
 <body>
-    <h2>Cafeteria</h2>
-    <form method="get" action="" name="myform" onsubmit='return(validate());'>
-      <div class="container">
-        <label for="uname"><b>Email:-</b></label>
-            <input type="text" placeholder="Enter your Email" name="name" id="name"><br>
-            <span id="spanname" style="color:red"></span><br>
-            <label for="psw"><b>Password:-</b></label>
-            <input type="password" placeholder="Enter Password" name="password" id="password"><br>
-            <span id="spanpsw" style="color:red"></span><br>
-        <button type="submit" value="submit">Login</button>
+<section class="vh-100 bg-image" >
+  <!-- style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');"> -->
+  <div class="mask d-flex align-items-center h-100" >
+    <div class="container h-100 mt-5" style="width: 100%;" >
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h4 class="text-uppercase text-center mb-5">Log In </h4>
+
+              <form action="login_config.php" method="post" class="needs-validation">
+                <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example3cg">Your Email</label>
+                    <input type="email" name="email" id="form3Example3cg" class="form-control form-control-lg" required />
+                    
+                    <!-- <span name="email" id="email_span">Email is invalid</span> </td> -->
+                    <span><?= (isset($_SESSION['errors']['valid_email']))? $_SESSION['errors']['valid_email']:''?></span>
+
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example4cg">Password</label>
+                    <input type="password" name="password" id="form3Example4cg" class="form-control form-control-lg" required />
+                    
+                    <!-- <span name="pass_span" id="pass_span">[6 to 16 ] characters which contain at least one special character, numeric digits,
+                        letters</span> -->
+
+                    </div>
+                    <div class="d-flex justify-content-evenly">
+                  <button type="submit" name="login"
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">LOG IN</button>
+                    <button type="reset"
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Reset</button>
+                </div>
+                    <br>
+                <div class="d-flex justify-content-evenly">
+                  <a href="forg_password.php" > Forget Password </a>
+                </div>
+
+                
+
+              </form>
+
+            </div>
+          </div>
+        </div>
       </div>
-      <p>forget password? <a href="#">click Here</a></p>
-    </form>
-    <script>
-      function validate() {  
-        if (document.myform.name.value == "") {
-                document.getElementById("spanemail").innerHTML = "Fill the Email please!";
-                document.myform.name.focus();
-                return false;
-            }
-            if (document.myform.password.value == "") {
-                document.getElementById("spanpsw").innerHTML = "Fill the password please!";
-                document.myform.password.focus();
-                return false;
-            }
-          }
-    </script>
+    </div>
+  </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<!-- <script src="script.js"></script> -->
 </body>
 </html>
+
+    
+        
