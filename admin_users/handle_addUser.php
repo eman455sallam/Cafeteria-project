@@ -1,5 +1,6 @@
 
 <?php
+
 if(isset($_POST['register'])){
         if(!empty($_POST['name']) && !empty( $_POST['email'])  && !empty($_POST['password']) && !empty($_FILES) && !empty($_POST['room']) && !empty($_POST['ext'])){
           function validation ($data){
