@@ -80,7 +80,7 @@ if(isset($_POST['register'])){
 
                     if(empty($image_errors)){
                         $photopath= '../uploads/';
-                        $photoname= $_FILES['image']['name'].".".$extension;
+                        $photoname= $_FILES['image']['name'];
                         $fullpath = $photopath.$photoname;
                          move_uploaded_file($_FILES['image']['tmp_name'],$fullpath);
 
