@@ -1,6 +1,6 @@
 
 <?php
-
+if($_COOKIE['role']==2){header("location:notfound.php");}
 if(isset($_POST['register'])){
         if(!empty($_POST['name']) && !empty( $_POST['email'])  && !empty($_POST['password']) && !empty($_FILES) && !empty($_POST['room']) && !empty($_POST['ext'])){
           function validation ($data){
@@ -73,14 +73,14 @@ if(isset($_POST['register'])){
                     }
                     $extension = pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION);
                     $images_extensions= ['png','jpg','jpeg'];
-                    // echo $extension;
+                     echo $extension;
                     if(!in_array($extension,$images_extensions)){
                         $image_errors['image_extention'] = "<p>Please imagge extention must be 'png','jpg','jpeg' </p>";
                     } 
 
                     if(empty($image_errors)){
                         $photopath= '../uploads/';
-                        $photoname= time().".".$extension;
+                        $photoname= $_FILES['image']['name'].".".$extension;
                         $fullpath = $photopath.$photoname;
                          move_uploaded_file($_FILES['image']['tmp_name'],$fullpath);
 
