@@ -7,10 +7,10 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="">Home</a>
+                        <a class="nav-link active" aria-current="page" href="../user/user.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="all_products.php">Products</a>
+                        <a class="nav-link" href="../admin_products/all_products.php">Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../admin_users/all_users.php">Users</a>
