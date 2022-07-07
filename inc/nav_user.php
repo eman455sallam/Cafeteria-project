@@ -12,6 +12,9 @@
         <li class="nav-item">
           <a class="nav-link" href="../user/user_orders.php">My Orders</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="../logout.php">Logout</a>
+        </li>
        
       </ul>
       <img  src=<?="../uploads/".$_COOKIE['image']?> height="80px" width="80px" style="margin-right:20px ;"> <b>USER:<?=" " . $_COOKIE['name']?></b>
