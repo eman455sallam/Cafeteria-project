@@ -36,7 +36,7 @@ require_once("handle_admin.php"); ?>
 </head>
 
 <body>
-
+<?php require_once("../inc/nav_admin.php"); ?>
     <div class="row">
         <section class="left_side  mt-0 col-4" style="width:32%;">
             <form class="row g-3" style="margin: 20px 10px;">
