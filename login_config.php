@@ -82,7 +82,7 @@
                       if( $userinfo['role']== 2){
                          header('location:user/user.php');
                       }if( $userinfo['role']== 1){
-                         header('location:admin.php');
+                         header('location:admin/admin.php');
                       }
 
                     }

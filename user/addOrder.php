@@ -41,7 +41,8 @@ $errors=[];
                 }
         
         
-    
+                header("location:./user.php");
+
    
  }catch(PDOException $e)
  {
