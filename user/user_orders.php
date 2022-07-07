@@ -40,20 +40,17 @@
     $db_object = new DB ();
   $allrows = $db_object->get_data("*","orders","1");  
   $result = $allrows->fetchAll(PDO::FETCH_ASSOC);
-  // echo "<pre>";
-  // var_dump($result);
-  // echo "</pre>";
-  foreach($result as $key=>$value){
-    // var_dump($key);
-    // var_dump($value);
-    echo $value['id'];
-    echo "<tr>
-  <td>{$value['date']}</td>
-  <td>".($value['status'] == '0'?'canceled':($value['status'] == '1'?'processing':($value['status'] == '2'?'out of delivery':($value['status'] == '3'?'done':''))) )."</td>
-  <td>{$value['total_amount']}</td>
-  <td>".($value['status'] == '1'?'<a> cancel</a>':'' )."</td>
-  </tr>";
   
+  foreach($result as $key=>$value){
+    
+    echo $value['id'];
+      echo "<tr>
+              <td>{$value['date']}</td>
+              <td>".($value['status'] == '0'?'canceled':($value['status'] == '1'?'processing':($value['status'] == '2'?'out of delivery':($value['status'] == '3'?'done':''))) )."</td>
+              <td>{$value['total_amount']}</td>
+              <td>".($value['status'] == '1'?'<a> cancel</a>':'' )."</td>
+            </tr>";
+              
   }
   
   }catch(PDOException $e){
@@ -63,28 +60,31 @@
   
   ?>  
 
-
-
-
-
-
-
-
-
-
-
   </tbody>
 </table>
 <div>
-<div class="n">
+<div class="d-flex flex-row justify-content-evenly" id="product_card">
   
-<div class="card" id="product_card" style="width: 18rem;">
+<!-- <div class="card" id="product_card" style="width: 18rem;"> -->
 
   <!-- <img class="card-img-top" src=".." alt="Card image cap"> -->
   <!-- <div class="card-body">
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div> -->
+<!-- </div> -->
 </div>
+<div id="total">
+<?php 
+$total = 0;
+foreach($result as $key=>$value){
+    
+    // echo $value['id'];
+$total += $value['total_amount'];         
+  };
+  echo "
+  <p id='price'> total = EGP {$total}</p>
+  ";
+?>
 </div>
 </div>
 </div>

@@ -4,6 +4,7 @@
 .date_inputs_container{
     margin: 20px 0 !important;
 }
-.n {
-    display: flex !important;
+.clickale {
+    /* display: flex !important; */
+    cursor: pointer;
 }

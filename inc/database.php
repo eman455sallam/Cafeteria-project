@@ -32,14 +32,18 @@ class DB {
    }
 
    function deletedata($table,$condition){
-    return $this->connect->query("delete from $table where $condition");
+    return $this->connect->query("delete from $table  $condition");
 
    }
    
    function updatedata($table,$values,$condition){
     return $this->connect->query("update $table set $values where $condition");
 
+
    }
+  //  function data(){
+  //   return $this->connect->query("SELECT * FROM orders  JOIN users_orders   ON orders.status ='1' ");
+  //  }
 
 }
 // $db =new DB();
