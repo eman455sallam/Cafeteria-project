@@ -22,7 +22,10 @@
    
     <body>
        <?php 
+       
+      
         require_once("../inc/database.php");
+
 
 
           //check edit button
@@ -47,6 +50,7 @@
                       var_dump( $e->getMessage());
                   }
           }
+       
 ///////////////////////////////////////////////UPDATE////////////////////////////////////////////////////
 if(isset($_POST['Update'])){
     
@@ -129,7 +133,7 @@ if(isset($_POST['Update'])){
 
               if(empty($image_errors)){
                   $photopath= '../uploads/';
-                  $photoname= time().".".$extension;
+                  $photoname=$_FILES['image']['name'];
                   $fullpath = $photopath.$photoname;
                    move_uploaded_file($_FILES['image']['tmp_name'],$fullpath);
 
@@ -180,11 +184,12 @@ if(isset($_POST['Update'])){
               
 }
 } 
-} 
+}
 ?>
 
 <!-- nav bar   -->
 <?php include("../inc/nav_admin.php")?>
+<?php if($_COOKIE['role']!=1){header("location:notfound.php");}?>
 
 <!-- EDIT AND UPDATE FORM -->
     <section class="vh-100 bg-image" >

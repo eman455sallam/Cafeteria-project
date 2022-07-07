@@ -3,6 +3,19 @@
 
 
 
+<?php 
+if(isset($_COOKIE['notregistered'])){
+  echo  $_COOKIE['notregistered'] ;
+}
+elseif(isset($_COOKIE['passincorrect'])){
+  echo  $_COOKIE['passincorrect'] ;
+}
+
+
+
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
