@@ -2,6 +2,7 @@
 require_once("../inc/database.php");
 if(isset($_POST['product_id']))
   {
+    
     $product_id=$_POST['product_id'];
     $user_id=$_POST['user_id'];
     $product_name=$_POST['item_name'];

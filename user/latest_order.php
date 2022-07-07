@@ -3,7 +3,6 @@
 require_once("../inc/database.php");
 // var_dump($_POST);
 
-
 $db=new DB();
 $connections= $db->get_connect();
 try{

@@ -1,6 +1,5 @@
 <?php
 require_once('../inc/database.php');
-
 if(isset($_GET['id'])){
     $id=$_GET['id'];
     $db=new DB();
