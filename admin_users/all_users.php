@@ -8,7 +8,7 @@
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- <link href="CSS/bootstrap.css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="style.css" rel="stylesheet" />
+    <link href="../css/stylealiaa.css" rel="stylesheet" />
     
     <title>all users</title>
     <style>
@@ -21,6 +21,11 @@
         text-align:center;
         
        }
+       .adduser{
+        display:inline-block;
+        position:absolute;
+        right:60px;
+       }
     </style>
 </head>
 <body>
@@ -32,45 +37,20 @@
 
         }else{
             
-            header("location:../index.php");
+            header("location:notfound.php");
             
         }
         
      ?>
-
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Cafeteria</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Products</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Users</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Manual Order</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Checks</a>
-              </li>
-            </ul>
-           <img src="../img/team-3-800x800.jpg" height="80px" width="80px" style="margin-right:20px ;"> <span>Admin:<?=" " . $_COOKIE['name']?></span>
-          </div>
-        </div>
-      </nav>
+    <!-- nav bar   -->
+<?php include("../inc/nav_admin.php")?>
+    
        
 
 
 
         <div class="title"><h2>ALL Users</h2></div>
+        <a class="adduser" href="add_user.php">Add User</a>
 
 
 

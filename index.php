@@ -1,114 +1,20 @@
 
-<?php
-  if(isset($_POST['login'])){
-          if( !empty( $_POST['email'])  && !empty($_POST['password']) ){
-            function validation ($data){
 
-              return htmlspecialchars(stripslashes(trim($data)));
-    
-            } 
 
-            
-            
-            
-            $ass_arr = [];
-            $email = validation($_POST['email']);
-            $pass = validation($_POST['password']);
 
-            if(filter_var($email,FILTER_VALIDATE_EMAIL) == false){
-              $ass_arr['valid_email']= "<p>Please Enter a valid email</p>"; 
-            }if(strlen($pass) < '7'){
-              $ass_arr['length_pass']= "<p>Please password should be more than 7 characters</p>"; 
-            }
-            if(count($ass_arr)>0 ){
-              
-              session_start();
-              $_SESSION['errors']=$ass_arr;
-            }else{
-              // echo"hhhh";
-              
 
-              require 'inc/database.php';
-              try{
-                session_start();
-                session_destroy();
+<?php 
+if(isset($_COOKIE['notregistered'])){
+  echo  $_COOKIE['notregistered'] ;
+}
+elseif(isset($_COOKIE['passincorrect'])){
+  echo  $_COOKIE['passincorrect'] ;
+}
 
-             
-                      $db = new DB();
-                      // var_dump ($db);
-                      // $query_statment= "INSERT INTO user (name,e_mail,pass_word,room,EXT,image) VALUES(?,?,?,?,?,?)";
-                      $data = $db->get_data("*","user","e_mail='$email' and pass_word='$pass'");
-                      $datawithoutpass=$db->get_data("*","user","e_mail='$email'");
-                      // var_dump( $data);
-                      $userinfo =$data->fetch(PDO::FETCH_ASSOC);
-                      $datawithoutpass2 =$datawithoutpass->fetch(PDO::FETCH_ASSOC);
-
-                      //check it is exist in data base 
-                      //  var_dump( $userinfo);
-                      //  var_dump($datawithoutpass2);
-                      
-                      if(($email==$datawithoutpass2['e_mail'])&&($pass!=$datawithoutpass2['pass_word'])){echo "<div class='notregistered'><h5><span> sorry :( Password incorrect <span></h5></div>";}
-                        elseif(!$userinfo){echo "<div class='notregistered'><h5><span> sorry :( you are not registered in this site </span></h5></div>";}else{
-
-                      // var_dump ($userinfo['name']);
-                      setcookie("id",$userinfo['id']);
-                       setcookie("name",$userinfo['name']);
-                       setcookie("email",$userinfo['e_mail']);
-                       setcookie("password",$userinfo['pass_word']);
-                       setcookie("image", $userinfo['image']);
-                       setcookie("room", $userinfo['room']);
-                       setcookie("ext", $userinfo['EXT']);
-                       setcookie("role", $userinfo['role']);
-
-                      //  echo  "hello " . $_COOKIE['name'];
-                    
-                      if( $_COOKIE['role']== 2){
-                         header('location:user/user.php');
-                      }if( $_COOKIE['role']== 1){
-                         header('location:admin.php');
-                      }
-
-                    }
-                       
-          
-              
-                        // header('location:**anypage**');
-                  }catch(PDOException $e){
-                        var_dump( $e->getMessage());
-                  }
-
-          }
-        }
-  }          
 
 
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!DOCTYPE html>
@@ -149,7 +55,7 @@
             <div class="card-body p-5">
               <h4 class="text-uppercase text-center mb-5">Log In </h4>
 
-              <form action="" method="post" class="needs-validation">
+              <form action="login_config.php" method="post" class="needs-validation">
                 <div class="form-outline mb-4">
                         <label class="form-label" for="form3Example3cg">Your Email</label>
                     <input type="email" name="email" id="form3Example3cg" class="form-control form-control-lg" required />
@@ -165,7 +71,6 @@
                     
                     <!-- <span name="pass_span" id="pass_span">[6 to 16 ] characters which contain at least one special character, numeric digits,
                         letters</span> -->
-                        <span><?= (isset($_SESSION['errors']['length_pass']))? $_SESSION['errors']['length_pass']:''?></span> 
 
                     </div>
                     <div class="d-flex justify-content-evenly">

@@ -26,8 +26,12 @@
     </style>
 </head>
 <body>
+  
 <?php 
- session_start();
+if(($_COOKIE['role']==1)){
+ session_start();}else{
+  header("location:notfound.php");
+ }
 ?>
 <!-- nav bar   -->
 <?php include("../inc/nav_admin.php")?>

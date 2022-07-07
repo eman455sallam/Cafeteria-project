@@ -1,4 +1,10 @@
 <?php
+
+
+
+
+
+
 class DB {
   private $host = "localhost";
   private $dbname = "cafeteria";
@@ -8,13 +14,15 @@ class DB {
 
    function __construct(){
     try{
-    $this->connect=new pdo("mysql:host=$this->host;dbname=$this->dbname" , $this->uname , $this->password);
+          $this->connect=new pdo("mysql:host=$this->host;dbname=$this->dbname" , $this->uname , $this->password);
     }catch(PDOException $e){
       echo $e->getMessage();
       
     }
+
+
+
    }
-   
 
    function get_connect (){
     return $this->connect;
@@ -30,19 +38,17 @@ class DB {
    }
 
    function deletedata($table,$condition){
-    return $this->connect->query("delete from $table  $condition");
+    return $this->connect->query("delete from $table where $condition");
 
    }
    
    function updatedata($table,$values,$condition){
     return $this->connect->query("update $table set $values where $condition");
 
-
    }
-  //  function data(){
-  //   return $this->connect->query("SELECT * FROM orders  JOIN users_orders   ON orders.status ='1' ");
-  //  }
 
 }
-
+// $db =new DB();
+// $studentinsert=$db->get_data("*","student","email='aliaafayez@yahoo.com' and password='1234'");
+// var_dump($studentinsert);
 ?>
