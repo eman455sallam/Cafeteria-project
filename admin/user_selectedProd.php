@@ -10,15 +10,14 @@
  $prod_id=$_POST['prod_id'];
  $quantity=$_POST['prod_quant'];
 
-  echo $user_id;
-//   echo $prod_id;
-//   echo $quantity;
-try{
-    $db->insertdata('carts',"`user_id`, `product_id`, `quantity`","'$user_id','$prod_id','$quantity'");
-
-}catch(PDOException $e){
-    var_dump($e);
-}
+//   echo $user_id;
+//  echo $prod_id;
+//  echo $quantity;
+ try{
+    
+ $db->insertdata('carts',"user_id,product_id,quantity","'{$user_id}','{$prod_id}','{$quantity}'");
+ }catch(PDOException $e){     var_dump($e);
+ }
 
  }
  ?>

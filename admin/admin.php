@@ -20,22 +20,19 @@
 
 <body>
 
-    
+
     <div class="row">
         <section class="left_side  mt-0 col-4" style="width:32%;">
             <form class="row g-3" style="margin: 20px 10px;">
-                
-                <div class="col-md-12">
-                    <h4 class="product">Tea</h4>
-                    <div class="counter">
-                        <div class="value-button" id="decrease" value="Decrease Value">-</div>
-                        <input type="number" id="number" value="0" />
-                        <div class="value-button" id="increase" value="Increase Value">+</div>
+
+                <div class="container bg-dnager">
+                    <div class="raw" id="product_data">
+
                     </div>
-                    <h4 style="display:inline-block;">EGP 25</h4>
+
                 </div>
 
-               
+
 
 
 
@@ -142,11 +139,6 @@
             let products = document.getElementsByClassName("product_img");
 
 
-
-
-
-
-
             for (var i = 0; i < products.length; i++) {
                 products[i].onclick = (event) => {
                     if (users.selectedIndex == 0) {
@@ -155,37 +147,103 @@
 
                         var user_id = users.options[users.selectedIndex].value;
                         var product_id = event.target.getAttribute('value');
-                        var quantity =1;
-                       //start ajax post 
+                        var quantity = 1;
+                        //start ajax post 
                         $.ajax({
                             url: "user_selectedProd.php",
                             method: "post",
                             data: {
-                                user_id:user_id ,
+                                user_id: user_id,
                                 prod_id: product_id,
-                                prod_quant:quantity
+                                prod_quant: quantity
 
                             },
-                            success: function(res) {
-                                
-                                //console.log(res);
-                            }
-
-                        })
-                     //end ajax post 
-                    //start ajax get
-                    $.ajax({
-                            url: "handle_admin.php",
-                            method: "get",
-                            dataType:"json",
                             success: function(res) {
 
                                 console.log(res);
                             }
 
                         })
+                        //  end ajax post 
+                        // start ajax get
+                        $.ajax({
+                            url: 'handle_getCart.php',
+                            method: "GET",
+                            data: {
+                                user_id: user_id
+                            },
+                            dataType: "json",
+                            success: function(res) {
+                                if (res.length > 0) {
+                                    var cartona = ``;
 
-                    //end ajax get 
+                                    for (var i = 0; i < res.length; i++) {
+
+
+
+                                        cartona += ` <h4 class="product_name">` + res[i].name + `</h4>
+                        <div class="counter">
+                            <div class="value-button decrease">-</div>
+                            <input type="number" class="product_quant" name="product_quant" value="` + res[i].quantity + `"/>
+                            <div class="value-button increase" value="Increase Value">+</div>
+                            <input type="hidden" style="display:inline-block;" class="product_price"  value="` + res[i].price + `"/> 
+                        <h4 style="display:inline-block;" class="all_price">  </h4>
+                        </div>`
+
+
+                                    }
+                                    document.getElementById("product_data").innerHTML = cartona
+
+
+                                    //---------------------------------------------increase and decrease------------------------------------------------------------
+
+
+                                  var count=1;
+                                    $('.decrease').on('click', function() {
+                                        var quantity = $(this).next().val();
+                                        var price = $(this).nextAll('input[type=hidden]').val();
+
+                                        $(this).next().val(quantity);
+                                            $(this).nextAll('.all_price').text(price+'EGP');
+
+                                        if (quantity > 1) {
+                                            var v=(--quantity);
+                                            $(this).next().val(v);
+                                            var newpp= price * (v);
+                                            $(this).nextAll('.all_price').text(newpp+'EGP');
+ 
+                                            count=v;
+                                        } else {
+                                            $(this).next().val(quantity);
+                                            $(this).nextAll('.all_price').text(price+'EGP');
+
+                                        }
+                                         return count;
+                                    });
+
+                                    $('.increase').on('click', function() {
+                                        var quantity = $(this).prev().val();
+                                        var price = $(this).nextAll('input[type=hidden]').val();
+                                        
+                                        if (quantity < 20) {
+                                            var en=(++quantity);
+                                            $(this).prev().val(en);
+                                            var newadd= price * (en);
+                                            $(this).nextAll('.all_price').text(newadd+'EGP');
+
+                                            count=en;
+ 
+                                        } else {
+                                            $(this).prev().val(quantity);
+
+                                        }
+                                        return count;
+                                    });
+                                }
+                            }
+
+                        });
+                        // end ajax get 
 
 
 

@@ -22,12 +22,14 @@ $result=$sql_products->fetchAll();
 
 /** end SElect categories */
 
-/**start display products  in order*/
-$sql_inCart =$db->get_data("*","carts",);
-$prods_cart=$sql_products->fetchAll();
-/**end display products  in order*/
 
 
+// $sql_inCart = $db->get_connect()->query("SELECT DISTINCT carts.product_id ,carts.quantity ,products.name ,products.price FROM `carts`
+//                                      INNER  JOIN `products`
+//                                      WHERE carts.user_id='4' and carts.product_id=products.id");
+// $cate=$sql_inCart->fetchAll();
 
 ?>
- 
+<!-- <pre>
+<?php  //var_dump($cate);?>
+</pre> -->
