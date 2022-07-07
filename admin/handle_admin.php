@@ -22,14 +22,23 @@ $result=$sql_products->fetchAll();
 
 /** end SElect categories */
 
+/** start SElect  rooms */
+
+$sql_rooms =$db->get_data("room","user","role='2'");
+$room_res=$sql_rooms->fetchAll();
 
 
-// $sql_inCart = $db->get_connect()->query("SELECT DISTINCT carts.product_id ,carts.quantity ,products.name ,products.price FROM `carts`
-//                                      INNER  JOIN `products`
-//                                      WHERE carts.user_id='4' and carts.product_id=products.id");
-// $cate=$sql_inCart->fetchAll();
+/** end SElect rooms */
+
+
+/** start SElect  ext */
+
+$sql_ext =$db->get_data("EXT","user","role='2'");
+$ext_res=$sql_ext->fetchAll();
+
+
+/** end SElect ext */
+
 
 ?>
-<!-- <pre>
-<?php  //var_dump($cate);?>
-</pre> -->
+
