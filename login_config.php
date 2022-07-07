@@ -15,7 +15,7 @@
             $ass_arr = [];
             $email = validation($_POST['email']);
             $pass = validation($_POST['password']);
-            echo "hhhhh";
+           
 
 
             if(filter_var($email,FILTER_VALIDATE_EMAIL) == false){
@@ -53,8 +53,19 @@
                       //  var_dump( $userinfo);
                       //  var_dump($datawithoutpass2);
                       
-                      if(($email==$datawithoutpass2['e_mail'])&&($pass!=$datawithoutpass2['pass_word'])){echo "<div class='notregistered'><h5><span> sorry :( Password incorrect <span></h5></div>";}
-                        elseif(!$userinfo){echo "<div class='notregistered'><h5><span> sorry :( you are not registered in this site </span></h5></div>";}else{
+                      if(($email==$datawithoutpass2['e_mail'])&&($pass!=$datawithoutpass2['pass_word']))
+                      {
+                        setcookie("passincorrect","<div class='notregistered'><h5><span> sorry :( Password incorrect <span></h5></div>"); 
+                        header("location:index.php");
+
+                      }
+                        elseif(!$userinfo){setcookie("notregistered", "<div class='notregistered'><h5><span> sorry :( you are not registered in this site </span></h5></div>");
+                          header("location:index.php");
+
+                        }else{
+                          setcookie("passincorrect","",time()-50000);
+                          setcookie("notregistered","",time()-50000);
+
 
                       // var_dump ($userinfo['name']);
                       setcookie("id",$userinfo['id']);
@@ -65,7 +76,7 @@
                        setcookie("ext", $userinfo['EXT']);
                        setcookie("role", $userinfo['role']);
 
-                       echo  "hello " . $_COOKIE['name'];
+                      
 
                     
                       if( $userinfo['role']== 2){
