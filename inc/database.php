@@ -13,10 +13,8 @@ class DB {
       echo $e->getMessage();
       
     }
-
-
-
    }
+   
 
    function get_connect (){
     return $this->connect;
@@ -46,7 +44,5 @@ class DB {
   //  }
 
 }
-// $db =new DB();
-// $studentinsert=$db->get_data("*","student","email='aliaafayez@yahoo.com' and password='1234'");
-// var_dump($studentinsert);
+
 ?>
