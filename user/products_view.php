@@ -16,7 +16,6 @@ $connections= $db->get_connect();
      var_dump($e->getMessage());
  }
    
-
  //rolls and ext
  try{
     

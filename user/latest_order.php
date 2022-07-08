@@ -13,7 +13,7 @@ $latest_orders=$connections->query("SELECT products.id,products.name,products.pr
     // foreach($latest_order as $val){
     //   var_dump($val);
 
-    // }
+    // 
     }catch(PDOException $e)
     {
         var_dump($e->getMessage());

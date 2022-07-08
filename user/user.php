@@ -129,7 +129,7 @@ foreach($categories as $category){
 foreach($products as $product){
     if($category['id']== $product['category_id']){
        if($product['status']==1){
-  
+
         echo "<div class='card col-md-3'>
             <img src='../uploads/{$product['image']}'  class='card-img-top addCart' onclick='cart({$product['id']});'>
             <div class='card-body'>
