@@ -128,9 +128,8 @@ foreach($categories as $category){
     echo "<h3 class='category'>{$category['category']}</h3>";
 foreach($products as $product){
     if($category['id']== $product['category_id']){
-       if($product['status']==1){
 
-        echo "<div class='card col-md-3'>
+    echo "<div class='card col-md-3'>
             <img src='../uploads/{$product['image']}'  class='card-img-top addCart' onclick='cart({$product['id']});'>
             <div class='card-body'>
                 <h5 class='card-text'>{$product['name']} </h5>
@@ -143,7 +142,7 @@ foreach($products as $product){
             <input type='hidden' value='1' id='quantity{$product['id']}'>
         </div>";
     }
-}
+   
 }
     }
 
