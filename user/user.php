@@ -122,8 +122,6 @@
 
 <!-- products -->
 <?php
-
-
 foreach($categories as $category){
     echo "<h3 class='category'>{$category['category']}</h3>";
 foreach($products as $product){

@@ -10,9 +10,7 @@ $latest_orders=$connections->query("SELECT products.id,products.name,products.pr
       FROM products ,orders,users_orders 
       WHERE orders.id=users_orders.order_id AND orders.user_id='{$_COOKIE['id']}' AND products.id=users_orders.product_id group by products.id ");
       $latest_order= $latest_orders->fetchAll(PDO::FETCH_ASSOC);
-    // foreach($latest_order as $val){
-    //   var_dump($val);
-    // }
+   
     }catch(PDOException $e)
     {
         var_dump($e->getMessage());

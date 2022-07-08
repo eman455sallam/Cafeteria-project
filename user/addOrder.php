@@ -27,7 +27,6 @@ $errors=[];
     $userOrder=$connections->query("select *from ORDERS where id=(SELECT LAST_INSERT_ID());");
     $results=$userOrder->fetchColumn();
 
-    // var_dump($results);
     $cart=$connections->query("select * from carts where user_id='{$_COOKIE['id']}'");
     $carts=$cart->fetchAll(PDO::FETCH_ASSOC);
     $products=$_POST['prod_id'];
@@ -46,6 +45,8 @@ $errors=[];
  {
      var_dump($e->getMessage());
  }}
+
+
 
 
 ?> 

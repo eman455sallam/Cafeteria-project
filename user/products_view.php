@@ -9,7 +9,6 @@ $connections= $db->get_connect();
      
       $data2=$connections->query("SELECT products.category_id ,categories.category,categories.id  FROM products ,categories where products.category_id=categories.id group by category_id ");
       $categories= $data2->fetchAll(PDO::FETCH_ASSOC);
-    //   var_dump($products);
  }catch(PDOException $e)
  {
      var_dump($e->getMessage());

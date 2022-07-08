@@ -8,11 +8,6 @@ try{
     where products.id=carts.product_id AND carts.user_id='{$_COOKIE['id']}'");
     $all=$data->fetchall(PDO::FETCH_ASSOC);
 
-    // echo($/all);
-  
-
-// exit();	
-
 }catch(PDOException $e){
     var_dump($e->getMessage());
     }

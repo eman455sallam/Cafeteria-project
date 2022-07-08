@@ -18,7 +18,6 @@ require_once("../inc/database.php");
             }
         }
         echo  "<input type='text class='form-control' name='total' value='{$total}' id='inputProduct' placeholder='Enter Product Name'>";
-    
 
     }catch(PDOException $e){
         var_dump($e->getMessage());
