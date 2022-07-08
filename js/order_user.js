@@ -4,8 +4,7 @@ function cart(id){
 	  var product_price=document.getElementById("price_"+product_id).value;
 	  var user_id=document.getElementById("user_id").value;
       var quantity=1;
-
-      console.log(user_id)
+    //   console.log(user_id)
 	    $.ajax({
             type:'post',
             url:'store_items.php',

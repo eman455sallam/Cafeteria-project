@@ -15,3 +15,4 @@ $latest_orders=$connections->query("SELECT products.id,products.name,products.pr
     {
         var_dump($e->getMessage());
     }
+    

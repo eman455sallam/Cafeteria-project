@@ -16,7 +16,6 @@ require_once("../inc/database.php");
             $total -= $cart['price']*$cart['quantity'];
         }
         echo  "<input type='text class='form-control' name=total value='{$total}' id='inputProduct' placeholder='Enter Product Name'>";
-
     }catch(PDOException $e){
         var_dump($e->getMessage());
         }

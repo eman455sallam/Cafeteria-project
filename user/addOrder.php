@@ -38,7 +38,6 @@ $errors=[];
                        $delcart=$connections->query("delete from carts where user_id={$_COOKIE['id']} AND product_id='{$_POST['prod_id'][$i]}'");
                 }
         
-        
                 header("location:./user.php");
    
  }catch(PDOException $e)

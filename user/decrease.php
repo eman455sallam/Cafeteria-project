@@ -34,10 +34,6 @@ if(isset($_POST['product_id']))
             echo"<input type='hidden' name='count[]' value='{$value['quantity']}'>";
             echo"<input type='hidden' value='1' id='quantity{$value['product_id']}'>";
         }
-
-        
-    
-
     }catch(PDOException $e){
         var_dump($e->getMessage());
         }

@@ -142,7 +142,7 @@ foreach($products as $product){
     }
 }
 }
-    }
+}
 
 
 

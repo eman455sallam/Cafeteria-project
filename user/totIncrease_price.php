@@ -1,4 +1,5 @@
 <?php
+
 require_once("../inc/database.php");
     $product_id=$_POST['productID'];
     $user_id=$_POST['userID'];

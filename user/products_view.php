@@ -3,7 +3,6 @@ require_once("../inc/database.php");
 $db=new DB();
 $connections= $db->get_connect();
  try{
-    
       $data=$connections->query("SELECT * FROM categories,products  WHERE categories.id=products.category_id ");
       $products= $data->fetchAll(PDO::FETCH_ASSOC);
      
