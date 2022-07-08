@@ -1,6 +1,5 @@
 <?php
 require_once("../inc/database.php");
-
 $db=new DB();
 $connections= $db->get_connect();
  try{

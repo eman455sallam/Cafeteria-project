@@ -1,7 +1,6 @@
 <?php
 require_once('../inc/database.php');
 $user_id=$_COOKIE['id'];
-
 try{
            
     $db=new DB();
