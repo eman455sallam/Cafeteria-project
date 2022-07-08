@@ -27,6 +27,7 @@
                 </ul>
                 <img src=<?="../uploads/".$_COOKIE['image']?> height="80px" width="80px" style="margin-right:20px ;"> <b>Admin:<?=" " . $_COOKIE['name']?></b>
             </div>
+            
         </div>
     </nav>
 

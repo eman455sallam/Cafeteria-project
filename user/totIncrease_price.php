@@ -7,7 +7,6 @@ require_once("../inc/database.php");
     $total=0;
     //total price increased
     try{
-   
         $db=new DB();
         $connections= $db->get_connect();
         $data2=$connections->query("select carts.product_id,carts.user_id,quantity,products.name,products.price from products,carts 

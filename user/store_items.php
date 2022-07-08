@@ -11,7 +11,6 @@ if(isset($_POST['product_id']))
     $total=0;
     // store order in cart
     try{
-   
         $db=new DB();
         $connections= $db->get_connect();
         $carts=$connections->query("select product_id ,user_id ,quantity from carts where product_id=$product_id AND user_id='{$_COOKIE['id']}'");
