@@ -5,7 +5,7 @@ $db = new DB();
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $run_query = $db->deletedata('products', "id=" . $id);
+    $run_query = $db->deletedata('products', "id=". $id);
 
 
 

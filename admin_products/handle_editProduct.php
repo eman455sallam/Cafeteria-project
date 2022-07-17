@@ -35,10 +35,10 @@ $db = new DB();
          if(!is_numeric($name)  ){
             if ( is_numeric($price)) {
 
-             if (strlen($name) > 5) {
+             if (strlen($name) > 3) {
                  $db->updatedata("products", " `name`='$name',`price`='$price',`image`='$new_img_name ',`category_id`='$cat_id'", "id=$id");
-                    echo 'yes';
-                // header("location:all_products.php?success='updated successfuly'");
+                
+                header("location:all_products.php?success='updated successfuly'");
              } else {
                  header("location:edit_product.php?id=$id&name_error='name must be >5 '");
          

@@ -30,7 +30,7 @@ class DB {
    }
 
    function deletedata($table,$condition){
-    return $this->connect->query("delete from $table  $condition");
+    return $this->connect->query("delete from $table WHERE $condition");
 
    }
    

@@ -75,10 +75,10 @@ if (isset($_GET['id'])) {
         </div>
         <div class="mb-3">
             <label for="categoryFormControlInput2" class="form-label">category</label>
-            <select class="form-select form-select-lg mb-3 " aria-label=".form-select-lg " name="category">
-                <option  selected Disabled secondary><?php echo $result['category']; ?></option>
+            <select class="form-select form-select-lg mb-3 " aria-label=".form-select-lg " name="category" required>
+                <option   Disabled secondary><?php echo $result['category']; ?></option>
                <?php  foreach($categories as $key=>$category) {?>
-                <option value="<?php echo $category['id'] ?>"><?php echo $category['category'] ?></option>
+                <option value="<?php echo $category['id'] ?>"  ><?php echo $category['category'] ?></option>
                   <?php } ?>
             </select>
 
