@@ -1,15 +1,17 @@
 <?php
 require_once("../inc/database.php");
  
-if($_COOKIE['role']==1){
- if(isset($_GET['id'])){
+if(($_COOKIE['role']==1)&&(isset($_GET['id']))){
+      echo"id={$_GET['id']}";
        try{
+           
 
             $db = new DB();
        
-               $userdelete = $db->deletedata("user","id={$_GET['id']}");
+               $userdelete = $db->deletedata("user","where id={$_GET['id']}");
             
-              
+               var_dump($userdelete);
+               
              
              
               
@@ -20,7 +22,7 @@ if($_COOKIE['role']==1){
                  var_dump( $e->getMessage());
        }
   
-      }
+      
 }else{
       header("location:notfound.php");
 }
